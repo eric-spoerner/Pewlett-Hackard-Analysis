@@ -47,8 +47,10 @@ CREATE TABLE title (
 	from_date DATE NOT NULL,
 	to_date DATE NULL,
 	FOREIGN KEY (emp_no) REFERENCES employee (emp_no),
-	PRIMARY KEY (emp_no, title)
+	PRIMARY KEY (emp_no, title, from_date)
 );
+
+
 CREATE TABLE salary (
 	-- What should the primary key be here?  emp_no+salary is not necessarily unique
 	emp_no INT NOT NULL,
