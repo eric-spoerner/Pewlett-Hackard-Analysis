@@ -147,3 +147,19 @@ INNER JOIN 	department AS d ON de.dept_no = d.dept_no;
 -- from dept_info
 -- group by emp_no
 -- having count(*) > 1
+
+--create a list of retirement info but only for sales team
+SELECT 	ri.*
+		,d.dept_name
+FROM retirement_info ri
+JOIN dept_emp de ON ri.emp_no = de.emp_no
+JOIN department d ON d.dept_no = de.dept_no
+WHERE de.to_date = '9999-01-01' AND d.dept_name = 'Sales';
+
+--same list but for sales OR development
+SELECT 	ri.*
+		,d.dept_name
+FROM retirement_info ri
+JOIN dept_emp de ON ri.emp_no = de.emp_no
+JOIN department d ON d.dept_no = de.dept_no
+WHERE de.to_date = '9999-01-01' AND d.dept_name IN ('Sales','Development');
