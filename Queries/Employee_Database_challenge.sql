@@ -1,4 +1,4 @@
-/* PART 1: identify anyone eligible for retirement */
+/* PART 1: identify the count of retirement-eligible employees per title. */
 DROP TABLE IF EXISTS retirement_titles;
 
 -- Identify all employees eligible for retirement based on DOB in the years from 1952 to 1995.
