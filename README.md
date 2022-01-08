@@ -2,11 +2,11 @@
 
 ## Project Description
 
-Database construction and subsequent analysis for a software company that had been managing employee information using only CSVs **more context here**.
+This repository contains SQL queries and CSV files related to an initiative for database construction and subsequent analysis for a software company.  This company had historically been managing its employee data in comma-separated CSV files and required an upgrade of their data framework. 
 
 Data was migrated into a PostgreSQL database based on a model constructed as part of this exercise.
 
-This analaysis requires two deliverables based on the processed data:
+The processed data was subsequently analyzed to generate the following data:
 * A count of employees eligible for requirement based on their title
 * The number of employees eligible for mentorship programs.
 
@@ -21,11 +21,11 @@ This analaysis requires two deliverables based on the processed data:
 
 ### Input files
 
-* `employees.csv` - Personal information of each employee **past and present**?
+* `employees.csv` - Personal information of each employee, past and present.
 * `departments.csv` - List of each company department.
 * `titles.csv` - All titles held by an employee for their entire tenure.
 * `salaries.csv` - All salaries earned by each employee for their entire tenure.
-* `dept_emp.csv` - List of all allocated 
+* `dept_emp.csv` - List of all departments to which employees have been allocated during the duration of their career at the company.
 * `dept_manager.csv` - Full historical dataset of managers for each department.
 
 ### Output files
@@ -45,7 +45,7 @@ Data schema was created based on this model and schema creation scripts are reta
 
 ## Analysis
 
-Queries are listed in the file `Queries/Employee_Database_challenge.sql`
+Queries for extraction of this data are listed in the file `Queries/Employee_Database_challenge.sql`.  Tables generated were then manually extracted into corresponding CSV files.
 
 ### Retirement-eligible employees by title
 
