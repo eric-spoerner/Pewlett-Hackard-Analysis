@@ -1,4 +1,4 @@
-# Migration and Analysis of Enterprise-level Employee Data
+# Employee retirement: an enterprise-level risk analysis
 
 ## Project Description
 
@@ -6,9 +6,7 @@ This repository contains SQL queries and CSV files related to an initiative for 
 
 Data was migrated into a PostgreSQL database based on a model constructed as part of this exercise.
 
-The processed data was subsequently analyzed to generate the following data:
-* A count of employees eligible for requirement based on their title
-* The number of employees eligible for mentorship programs.
+The processed data was subsequently analyzed to investigate statistics related to retirement and mentorship, as the company's workforce is aging and a "silver tsunami" threatens to create significant loss of institutional knowledge. 
 
 ## Resources
 
@@ -30,10 +28,14 @@ The processed data was subsequently analyzed to generate the following data:
 
 ### Output files
 
-* `Data/retirement_titles.csv` - Contains the full list of all employees born in this window along with every title they have held during their tenure.  
-* `Data/unique_titles.csv` - Contains the list from the above, but reduced to one entry per employee, containing their current title.
-* `Data/retiring_titles.csv` - The final results, containing the values from `unique_titles.csv`, counted by specific title. 
-* `Data/mentorship_eligibility.sql` - List of all employees eligible for the mentorship program.
+* `retirement_titles.csv` - Contains the full list of all employees born in the years **1952-1955** along with every title they have held during their tenure.  
+* `unique_titles.csv` - Contains the list from the above, but reduced to one entry per employee, containing their current title.
+* `retiring_titles.csv` - The final results, counting the number of each specific job title eligible for retirement as identified in `unique_titles.csv`.
+* `mentorship_eligibility.csv` - List of all employees eligible for the mentorship program.
+* `mentorship_by_title.csv` - Lists all candidates for mentorship program by title, compares with count of eligible retirees by same titles, and determines a ratio of retiree to mentee.
+* `employee_age.csv` - Age in years of all employees as of January 8, 2022.
+* `aggregate_age_statistics.csv` - Top-line summary data of company-wide employee age.
+* `emp_age_by_dept.csv` - Average employee age per department.
 
 ### Transformation
 
@@ -47,22 +49,27 @@ Data schema was created based on this model and schema creation scripts are reta
 
 Queries for extraction of this data are listed in the file `Queries/Employee_Database_challenge.sql`.  Tables generated were then manually extracted into corresponding CSV files.
 
-### Retirement-eligible employees by title
+### Findings
 
-Employees are listed as eligible to retire based on their year of birth, which is between 1952 and 1955.  
+* *"Silver Tsunami" confirmed* - This company is indeed in serious trouble for retirement-based attrition in the coming years, as the youngest employee in the organization was born in February 1965, and at the time of this analysis, almost 57 years old.  The average age of all employees in the firm is 63 years.
 
-Final results
+* *Advanged employee age is is evenly distributed across departments* - The average age in every single department is 63.  This is a company in profound and systemic crisis without a significant effort to aggressively staff younger candidates to backfill these departures.
 
-| Count | Title |
-| ----- | ----- |
-| 29414	| Senior Engineer |
-| 28254	| Senior Staff |
-| 14222	| Engineer |
-| 12243	| Staff |
-| 4502 | Technique Leader |
-| 1761 | Assistant Engineer |
-| 2	| Manager |
+* *Immediate retirement eligibility* - Employees are listed as eligible to retire based on their year of birth, which is between 1952 and 1955.  See # Retirees column below in Fig. 2 for eligibilty by role.
 
-### Employees entering a mentorship program
+* *Mentorship availability* - The mentorship program is only available to employees born in the year 1965, which as stated before, is the youngest year of birth for any employee at the company.  This makes only **1,549** employees eligible for mentorship programs.  See Fig. 2 below - there is at least a **fifty-to-one** ratio of retirees to mentees in nearly every role; this is a highly disproportionate distribution.  The mentorship program needs aggressive expansion to keep up with brain drain.
 
-Oddly, the mentorship program is only available to employees born in the year 1965, for a total of **1,549** eligible employees.
+_Fig. 2 - retirement-eligibility and mentorship-eligibility counts by department:_
+
+| Title | # Mentees | # Retirees | Retiree/Mentee Ratio
+| ----- | ----- | ----- | ----- |
+Senior Engineer | 529 |	29414 | **55** |
+Senior Staff | 569 | 28254 | **49** |
+Engineer | 190 | 14222 | **74** |
+Staff | 155 | 12243 | **78** |
+Technique Leader | 77 |	4502 | **58** |
+Assistant Engineer | 29 | 1761 | **60** |
+Manager | 0 | 2	| **N/A**
+
+
+
